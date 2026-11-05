@@ -1,11 +1,13 @@
 package myapp.skills;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import myapp.windows.ProcessRunner;
 
 public class VolumeControl {
-    
+
+    ProcessRunner processRunner = new ProcessRunner();
+
     public void SetVolume(Integer volume)
     {
         List<String> commands = new ArrayList<String>();
@@ -14,25 +16,12 @@ public class VolumeControl {
         nirVolume = nirVolume * 655.35;
 
         System.out.println(nirVolume);
+        long finalNirVolume = Math.round(nirVolume);
 
         commands.add("tools/nircmd.exe");
         commands.add("setsysvolume");
-        commands.add(String.valueOf(nirVolume));
+        commands.add(String.valueOf(finalNirVolume));
 
-        BuildProcess(commands);
-    }
-
-    void BuildProcess(List<String> commands)
-    {
-        ProcessBuilder pb = new ProcessBuilder(commands);
-
-        try {
-            pb.start(); 
-            System.out.println("Process started successfully.");
-        } 
-        catch (IOException e) {
-            System.err.println("Failed to start the process: " + e.getMessage());
-            e.printStackTrace();
-        }
+        processRunner.BuildProcess(commands);
     }
 }

@@ -1,10 +1,12 @@
 package myapp.skills;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import myapp.windows.ProcessRunner;
 
 public class OutputControl {
+
+    ProcessRunner processRunner = new ProcessRunner();
     
     public void ChangeOutput(String outputDevice)
     {
@@ -14,7 +16,7 @@ public class OutputControl {
         commands.add("setdefaultsounddevice");
         commands.add(outputDevice);
 
-        BuildProcess(commands);
+        processRunner.BuildProcess(commands);
     }
 
     public void ToggleOutputDevice()
@@ -26,20 +28,6 @@ public class OutputControl {
         commands.add("Realtek(R) Audio\\Device\\Headphones\\Render");
         commands.add("Realtek(R) Audio\\Device\\Speakers\\Render");
 
-        BuildProcess(commands);
-    }
-
-    void BuildProcess(List<String> commands)
-    {
-        ProcessBuilder pb = new ProcessBuilder(commands);
-
-        try {
-            pb.start(); 
-            System.out.println("Process started successfully.");
-        } 
-        catch (IOException e) {
-            System.err.println("Failed to start the process: " + e.getMessage());
-            e.printStackTrace();
-        }
+        processRunner.BuildProcess(commands);
     }
 } 
