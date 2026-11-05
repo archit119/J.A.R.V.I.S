@@ -1,73 +1,38 @@
 package myapp.skills;
 
-import java.lang.Thread;
-
-import com.sun.jna.platform.win32.WinUser.INPUT;
-
-import myapp.windows.User32;
-
-import com.sun.jna.platform.win32.WinDef.DWORD;
-import com.sun.jna.platform.win32.WinDef.WORD;
-import com.sun.jna.platform.win32.BaseTSD;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VolumeControl {
-
-    static final int VK_VOLUME_UP = 0xAF;
-    static final int VK_VOLUME_DOWN = 0xAE;
-    static final int INPUT_KEYBOARD = 1;
-
-    public int SetVolume(int volume)
-    {
-        int result = 0;
-        // // first decrease the volume to 0
-        for(int i=0; i < 50; i++)
-        {
-            ControlVolume(VK_VOLUME_DOWN);
-            sleep(5);
-        }
-
-        // then set it to desired volume
-        for(int i=0; i < volume/2; i++)
-        {
-            result += ControlVolume(VK_VOLUME_UP);
-            sleep(5);
-        }
-
-        return result;
-    }
     
-    int ControlVolume(int key)
+    public void SetVolume(Integer volume)
     {
-        // preparing the input
-        INPUT input = new INPUT();
+        List<String> commands = new ArrayList<String>();
 
-        input.type = new DWORD(INPUT.INPUT_KEYBOARD);
-        input.input.setType("ki");
-        input.input.ki.wScan = new WORD(0);
-        input.input.ki.time = new DWORD(0);
-        input.input.ki.dwExtraInfo = new BaseTSD.ULONG_PTR(0);
+        double nirVolume = volume.doubleValue();
+        nirVolume = nirVolume * 655.35;
 
-        // pressing volume up
-        input.input.ki.wVk = new WORD(key);
-        input.input.ki.dwFlags = new DWORD(0); // keydown
+        System.out.println(nirVolume);
 
-        int result = User32.INSTANCE.SendInput(new DWORD(1), (INPUT[]) input.toArray(1), input.size()); // sends the input
+        commands.add("tools/nircmd.exe");
+        commands.add("setsysvolume");
+        commands.add(String.valueOf(nirVolume));
 
-        // release volume up
-        input.input.ki.wVk = new WORD(key);
-        input.input.ki.dwFlags = new DWORD(1); // keyup
-
-        return result;
+        BuildProcess(commands);
     }
 
-    void sleep(int time)
+    void BuildProcess(List<String> commands)
     {
+        ProcessBuilder pb = new ProcessBuilder(commands);
+
         try {
-            Thread.sleep(time); 
+            pb.start(); 
+            System.out.println("Process started successfully.");
         } 
-        catch (InterruptedException e) {
-            Thread.currentThread().interrupt(); 
-            System.out.println("Thread was interrupted!");
+        catch (IOException e) {
+            System.err.println("Failed to start the process: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
