@@ -1,77 +1,90 @@
 package myapp.core;
 
 import myapp.skills.VolumeControl;
+
+import java.util.concurrent.TimeUnit;
+
 import myapp.skills.OutputControl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
-
 public class CommandDispatcher {
-    public void HandleInput(String input)
-    {
-        VolumeControl volumeControl = new VolumeControl();
-        OutputControl outputControl = new OutputControl();
 
-        // volume control
-        if(input.toLowerCase().contains("volume"))
+    NumberParser numberParser = new NumberParser();
+
+    boolean standby = false;
+    boolean clapHeard = false;
+
+    long start;
+    long timeToWait = 5;
+
+    String wakeword = "wake up daddys home";
+
+    public void HandleInput(VolumeControl volumeControl, OutputControl outputControl, String input)
+    {
+        String cleanInput = input.toLowerCase();
+        if(standby)
         {
-            VolumeControlHandle(input, volumeControl);
+            // DEBUG
+            boolean armed = System.nanoTime()-start < TimeUnit.SECONDS.toNanos(timeToWait);
+            System.out.println("Clap heard: " + clapHeard);
+            System.out.println("Armed status: " + armed);
+
+            // do the check
+            if(cleanInput.contains(wakeword) && armed && clapHeard)
+            {
+                System.out.println("Waking up");
+                standby = false;
+                clapHeard = false;
+            }
         }
-        // output control
-        else if(input.toLowerCase().contains("change"))
+        else
         {
-            if(input.toLowerCase().contains("speakers"))
+            // volume control
+            if(cleanInput.contains("volume"))
             {
-                outputControl.ChangeOutput("Speakers");
+                VolumeControlHandle(input, volumeControl);
             }
-            else if(input.toLowerCase().contains("headphones"))
+            // output control
+            else if(cleanInput.contains("change"))
             {
-                outputControl.ChangeOutput("Headphones");
+                if(cleanInput.contains("speakers"))
+                {
+                    outputControl.ChangeOutput("Speakers");
+                }
+                else if(cleanInput.contains("headphones"))
+                {
+                    outputControl.ChangeOutput("Headphones");
+                }
+                else
+                {
+                    // toggle feature maybe
+                    outputControl.ToggleOutputDevice();
+                }
             }
-            else
+            else if(cleanInput.contains("enough"))
             {
-                // toggle feature maybe
-                outputControl.ToggleOutputDevice();
-            }
+                // tell the script to stop somehow?
+                standby = true;
+                System.out.println("Stading by");
+            } 
         }
+  
     }
 
-    void VolumeControlHandle(String input, VolumeControl volumeControl)
+    public void ClapHeard()
     {
-        List<Integer> finalNumbers = new ArrayList<Integer>();
-        int finalNumber = 0;
+        start = System.nanoTime();
+        clapHeard = true;
+        // System.out.println("Setting clap heard to: " + value);
+    }
 
-        // text contains volume
-        // now time to find the number
-        for(int i = 0; i < input.length(); i++)
-        {
-            String[] numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    public boolean ShouldStandby()
+    {
+        return standby;
+    }
 
-
-            int pos = Arrays.asList(numbers).indexOf(String.valueOf(input.charAt(i)));
-
-            if(pos == -1)
-            {
-                continue; // go to the next iteration
-            }
-
-            // System.out.println(pos);
-
-            finalNumbers.add(pos); // add the value
-        }
-
-        // System.out.println(finalNumbers);
-
-        // now to make the array an actual number
-        int j = 0;
-
-        for(int i = finalNumbers.size() - 1; i >= 0; i--)
-        {
-            finalNumber += (finalNumbers.get(j) * Math.pow(10, i));
-            j++;
-        }
-
+    void VolumeControlHandle(String rawInput, VolumeControl volumeControl)
+    {
+        int finalNumber = numberParser.NumberConverter(rawInput);
         System.out.println(finalNumber);
 
         // limit the final number
@@ -80,6 +93,12 @@ public class CommandDispatcher {
             finalNumber = 100;
         }
 
-        volumeControl.SetVolume(finalNumber);
+        if(finalNumber != -1) volumeControl.SetVolume(finalNumber);
+        else 
+        {
+            // dont do anything
+            // here i would probably somehow ask it to speakback saying i didnt get the volume
+            System.out.println("I didn't quite get that, what do you want the volume set too?");
+        }
     }
 }

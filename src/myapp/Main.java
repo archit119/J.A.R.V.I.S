@@ -1,36 +1,19 @@
 package myapp;
 
-import java.io.IOException;
-
-import javax.sound.sampled.UnsupportedAudioFileException;
-
+import myapp.core.ClapListener;
 import myapp.core.CommandDispatcher;
-import myapp.skills.OutputControl;
-import myapp.input.TextInput;
-import myapp.input.VoiceInput;
+import myapp.core.ModelInitializer;
 
 public class Main {
     
-    public static void main(String[] args){
-        // int targetVolume = 75;
-
-        // VolumeControl volumeControl = new VolumeControl();
-        // int result = volumeControl.SetVolume(targetVolume);
-        // System.out.print(result);
-
-        OutputControl outputControl = new OutputControl();
-        // outputControl.ChangeOutput("Headphones");
-
-        // outputControl.GetOutputDevice();
-
-        VoiceInput voiceInput = new VoiceInput();
-        TextInput textInput = new TextInput();
+    public static void main(String[] args)
+    {
         CommandDispatcher commandDispatcher = new CommandDispatcher();
 
-        // String input = textInput.GetInput();
-        voiceInput.Record();
-        String voice = voiceInput.ConvertText();
-
-        commandDispatcher.HandleInput(voice);
+        ClapListener clapListener = new ClapListener(commandDispatcher);
+        clapListener.ListenForClaps();
+        
+        ModelInitializer modelInitializer = new ModelInitializer();
+        modelInitializer.InitalizeModel(commandDispatcher);
     }
 }

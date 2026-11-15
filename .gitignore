@@ -1,3 +1,8 @@
 bin/
 out/
 *.class
+venv/
+*.wav
+__pycache__/
+tools/vosk-model-*/
+.gradle/
