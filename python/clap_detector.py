@@ -1,5 +1,9 @@
 import time
+import sys
+import os
 from clapDetector import ClapDetector, printDeviceInfo
+import program_killer
+import threading
 
 print("""
       --------------------------------
@@ -14,6 +18,10 @@ highcut=10000             #< decrease this to make claps detection more strict
 clapDetector = ClapDetector(inputDevice=-1, logLevel=10)
 clapDetector.initAudio()
 
+# initialize the program killer in a seperate thread
+t = threading.Thread(target=program_killer.main, daemon=True)
+t.start()
+
 try:
    while True:
       audioData = clapDetector.getAudio()
@@ -27,6 +35,7 @@ try:
 
 except KeyboardInterrupt:
    print("Exited gracefully")
+   sys.exit(0)
 except Exception as e:
    print(f"error: {e}")
 finally:

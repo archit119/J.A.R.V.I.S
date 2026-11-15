@@ -6,10 +6,11 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.*;
 
 import myapp.windows.RunPython;
 
-public class ClapListener extends Thread{
+public class ClapListener{
 
     CommandDispatcher commandDispatcher;
 
@@ -19,9 +20,11 @@ public class ClapListener extends Thread{
     }
 
     RunPython runPython = new RunPython();
+    Process process;
+
     public void ListenForClaps()
     {
-        Process process = runPython.RunPythonScript("clap_detector.py");
+        process = runPython.RunPythonScript("clap_detector.py");
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8));
 
@@ -40,6 +43,18 @@ public class ClapListener extends Thread{
                         commandDispatcher.ClapHeard();
                         System.out.println("Heard double clap");
                     }
+                    else if(line.equals(null))
+                    {
+                        Logger logger
+                            = Logger.getLogger(
+                                ClapListener.class.getName());
+
+                        // Set Logger level()
+                        logger.setLevel(Level.WARNING);
+
+                        // Call warning method
+                        logger.warning("Clap detection stopped working");
+                    }
                 }
 
                 catch (IOException e) {
@@ -50,5 +65,12 @@ public class ClapListener extends Thread{
         });
 
         backgroundThread.start();
+    }
+
+    public void DestroyProcess()
+    {
+        System.out.println("BEFORE Process alive: " + process.isAlive());
+        process.destroy();
+        System.out.println("AFTER Process alive: " + process.isAlive());
     }
 }

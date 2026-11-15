@@ -10,8 +10,8 @@ public class CommandDispatcher {
 
     NumberParser numberParser = new NumberParser();
 
-    boolean standby = false;
-    boolean clapHeard = false;
+    volatile boolean standby = false;
+    volatile boolean clapHeard = false;
 
     long start;
     long timeToWait = 5;
