@@ -16,4 +16,4 @@ public class Main {
         ModelInitializer modelInitializer = new ModelInitializer();
         modelInitializer.InitalizeModel(commandDispatcher);
     }
-}
+} 

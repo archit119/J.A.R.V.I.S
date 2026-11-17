@@ -1,7 +1,9 @@
 {
     "java.project.sourcePaths": ["src"],
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+    "lib/**/*.jar",
+    "tools/javafx-sdk-27.0.1/lib/*.jar"
     ],
-    "java.inlayHints.parameterNames.enabled": "none"
+    "java.inlayHints.parameterNames.enabled": "none",
+    "java.debug.settings.vmArgs": "--module-path \"tools/javafx-sdk-27.0.1/lib\" --add-modules javafx.controls"
 }
