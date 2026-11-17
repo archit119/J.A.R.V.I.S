@@ -1,14 +1,25 @@
 package myapp;
 
+import javafx.application.Application;
 import myapp.core.ClapListener;
 import myapp.core.CommandDispatcher;
 import myapp.core.ModelInitializer;
+import myapp.output.ConsoleWindow;
 
 public class Main {
     
-    public static void main(String[] args)
+    public static void main(String[] args) throws InterruptedException
     {
-        CommandDispatcher commandDispatcher = new CommandDispatcher();
+        new Thread(() -> Application.launch(ConsoleWindow.class)).start();
+
+        // wait until JavaFX finishes initializing the object
+        while (ConsoleWindow.getInstance() == null) {
+            Thread.sleep(50);
+        }
+
+        ConsoleWindow console = ConsoleWindow.getInstance();
+
+        CommandDispatcher commandDispatcher = new CommandDispatcher(console);
 
         ClapListener clapListener = new ClapListener(commandDispatcher);
         clapListener.ListenForClaps();

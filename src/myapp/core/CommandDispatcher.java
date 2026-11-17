@@ -2,11 +2,21 @@ package myapp.core;
 
 import myapp.skills.VolumeControl;
 
+import java.io.Console;
 import java.util.concurrent.TimeUnit;
 
 import myapp.skills.OutputControl;
 
+import myapp.output.ConsoleWindow;
+import myapp.output.ConsoleWriter;
+
 public class CommandDispatcher {
+
+    ConsoleWindow consoleWindow = null;
+
+    public CommandDispatcher (ConsoleWindow ConsoleWindow) {
+        consoleWindow = ConsoleWindow;
+    }
 
     NumberParser numberParser = new NumberParser();
 
@@ -21,6 +31,7 @@ public class CommandDispatcher {
     public void HandleInput(VolumeControl volumeControl, OutputControl outputControl, String input)
     {
         String cleanInput = input.toLowerCase();
+        consoleWindow.SetText(cleanInput);
         if(standby)
         {
             // DEBUG
@@ -32,6 +43,13 @@ public class CommandDispatcher {
             if(cleanInput.contains(wakeword) && armed && clapHeard)
             {
                 System.out.println("Waking up");
+                consoleWindow.SetText("> Waking up");
+                standby = false;
+                clapHeard = false;
+            }
+            else if(cleanInput.contains("wake up")) {
+                System.out.println("Waking up");
+                consoleWindow.SetText("> Waking up");
                 standby = false;
                 clapHeard = false;
             }
@@ -58,6 +76,7 @@ public class CommandDispatcher {
                 {
                     // toggle feature maybe
                     outputControl.ToggleOutputDevice();
+                    consoleWindow.SetText("> Changing the output device");
                 }
             }
             else if(cleanInput.contains("enough"))
@@ -65,6 +84,7 @@ public class CommandDispatcher {
                 // tell the script to stop somehow?
                 standby = true;
                 System.out.println("Stading by");
+                consoleWindow.SetText("> Standing by");
             } 
         }
   
