@@ -14,7 +14,7 @@ import myapp.input.TextInput;
 
 public class ModelInitializer {
 
-    boolean useVoice = false; // just for debugging purposes
+    boolean useVoice = true; // just for debugging purposes
 
     public void InitalizeModel(CommandDispatcher commandDispatcher)
     {

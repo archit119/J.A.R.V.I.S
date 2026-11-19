@@ -4,6 +4,7 @@ import javafx.application.Application;
 import myapp.core.ClapListener;
 import myapp.core.CommandDispatcher;
 import myapp.core.ModelInitializer;
+import myapp.core.Status;
 import myapp.output.ConsoleWindow;
 
 public class Main {
@@ -18,6 +19,7 @@ public class Main {
         }
 
         ConsoleWindow console = ConsoleWindow.getInstance();
+        console.SetStatus(Status.LISTENING);
 
         CommandDispatcher commandDispatcher = new CommandDispatcher(console);
 

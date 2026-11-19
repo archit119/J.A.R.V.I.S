@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Console';
+    src: url('fonts/console.ttf');
+}
+
+.label {
+    -fx-font-family: 'Console';
+    -fx-font-size: 50;
+}
+
+.button .text {
+    -fx-font-family: 'Console';
+}

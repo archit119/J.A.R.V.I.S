@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 import myapp.skills.OutputControl;
 
 import myapp.output.ConsoleWindow;
-import myapp.output.ConsoleWriter;
 
 public class CommandDispatcher {
 
@@ -46,12 +45,14 @@ public class CommandDispatcher {
                 consoleWindow.SetText("> Waking up");
                 standby = false;
                 clapHeard = false;
+                consoleWindow.SetStatus(Status.LISTENING);
             }
             else if(cleanInput.contains("wake up")) {
                 System.out.println("Waking up");
                 consoleWindow.SetText("> Waking up");
                 standby = false;
                 clapHeard = false;
+                consoleWindow.SetStatus(Status.LISTENING);
             }
         }
         else
@@ -83,6 +84,7 @@ public class CommandDispatcher {
             {
                 // tell the script to stop somehow?
                 standby = true;
+                consoleWindow.SetStatus(Status.STANDBY);
                 System.out.println("Stading by");
                 consoleWindow.SetText("> Standing by");
             } 
