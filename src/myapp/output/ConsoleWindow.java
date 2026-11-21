@@ -52,10 +52,11 @@ public class ConsoleWindow extends Application {
       // ImageView arc = InitializeImage();
 
       Font customFont = Font.loadFont(
-            getClass().getResourceAsStream("/fonts/console.ttf"),
+            getClass().getResourceAsStream("resources/fonts/console.ttf"),
             18);
 
       if (customFont != null) {
+         System.out.println("Using custom font");
          text.setFont(customFont);
          // designText.setFont(customFont);
          title.setFont(customFont);
@@ -92,6 +93,7 @@ public class ConsoleWindow extends Application {
 
       Scene scene = new Scene(root, resX, resY);
       scene.setFill(Color.TRANSPARENT);
+      scene.getStylesheets().add(new java.io.File("src/myapp/output/resources/console.css").toURI().toString());
       // scene.getStylesheets().add(getClass().getResource("/fontstyle.css").toExternalForm());
       primaryStage.setScene(scene);
 

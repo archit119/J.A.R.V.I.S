@@ -6,6 +6,8 @@ import myapp.core.CommandDispatcher;
 import myapp.core.ModelInitializer;
 import myapp.core.Status;
 import myapp.output.ConsoleWindow;
+import myapp.skills.OutputControl;
+import myapp.skills.VolumeControl;
 
 public class Main {
     
@@ -21,12 +23,15 @@ public class Main {
         ConsoleWindow console = ConsoleWindow.getInstance();
         console.SetStatus(Status.LISTENING);
 
-        CommandDispatcher commandDispatcher = new CommandDispatcher(console);
+        OutputControl outputControl = new OutputControl();
+        VolumeControl volumeControl = new VolumeControl();
+
+        CommandDispatcher commandDispatcher = new CommandDispatcher(console, volumeControl, outputControl);
 
         ClapListener clapListener = new ClapListener(commandDispatcher);
         clapListener.ListenForClaps();
         
         ModelInitializer modelInitializer = new ModelInitializer();
-        modelInitializer.InitalizeModel(commandDispatcher);
+        modelInitializer.InitalizeModel(commandDispatcher, volumeControl, outputControl);
     }
 } 

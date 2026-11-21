@@ -16,12 +16,10 @@ public class ModelInitializer {
 
     boolean useVoice = true; // just for debugging purposes
 
-    public void InitalizeModel(CommandDispatcher commandDispatcher)
+    public void InitalizeModel(CommandDispatcher commandDispatcher, VolumeControl volumeControl, OutputControl outputControl)
     {
-        VoiceInput voiceInput = new VoiceInput();
+        VoiceInput voiceInput = new VoiceInput(commandDispatcher);
         TextInput textInput = new TextInput();
-        OutputControl outputControl = new OutputControl();
-        VolumeControl volumeControl = new VolumeControl();
     
         String[] keywords = {
             // wake word
@@ -61,6 +59,7 @@ public class ModelInitializer {
             while(true)
             {
                 String voice;
+
                 if(useVoice)
                 {
                     voice = voiceInput.GetInput(model, recognizer);
@@ -69,7 +68,8 @@ public class ModelInitializer {
                 {
                     voice = textInput.GetInput();
                 }
-                commandDispatcher.HandleInput(volumeControl, outputControl, voice);
+                
+                commandDispatcher.HandleInput(voice);
             }
         }
         catch (IOException e)

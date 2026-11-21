@@ -1,0 +1,38 @@
+/* the text area itself: black, no grey bar, subtle cyan border, no focus glow */
+.console, .console .content, .console .viewport, .console .scroll-pane {
+    -fx-background-color: black;
+}
+.console {
+    -fx-background-insets: 0;
+    -fx-border-color: rgba(0, 255, 255, 0.3);
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+/* the scrollbar: thin, no background, no arrow buttons */
+.console .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 6;
+}
+.console .scroll-bar .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.console .scroll-bar .thumb {
+    -fx-background-color: rgba(0, 255, 255, 0.35);
+    -fx-background-radius: 3;
+}
+.console .scroll-bar .thumb:hover {
+    -fx-background-color: rgba(0, 255, 255, 0.7);
+}
+.console .scroll-bar .increment-button,
+.console .scroll-bar .decrement-button,
+.console .scroll-bar .increment-arrow,
+.console .scroll-bar .decrement-arrow {
+    -fx-padding: 0;
+    -fx-shape: "";
+    -fx-background-color: transparent;
+}
+.console .corner {
+    -fx-background-color: transparent;
+}
