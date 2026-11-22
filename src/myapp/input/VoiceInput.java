@@ -1,41 +1,18 @@
 package myapp.input;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.File;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.TargetDataLine;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
-import javax.swing.JOptionPane;
-
-import org.vosk.LibVosk;
-import org.vosk.LogLevel;
 import org.vosk.Model;
 import org.vosk.Recognizer;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import be.tarsos.dsp.AudioDispatcher;
-import be.tarsos.dsp.AudioEvent;
-import be.tarsos.dsp.AudioProcessor;
-import be.tarsos.dsp.pitch.PitchDetectionHandler;
-import be.tarsos.dsp.pitch.PitchProcessor;
 import myapp.core.CommandDispatcher;
-import myapp.core.Status;
 
 public class VoiceInput {
 

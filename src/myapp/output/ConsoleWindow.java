@@ -51,26 +51,21 @@ public class ConsoleWindow extends Application {
       Text status = InitalizeStatus(resX);
       // ImageView arc = InitializeImage();
 
-      Font customFont = Font.loadFont(
-            getClass().getResourceAsStream("resources/fonts/console.ttf"),
-            18);
+      Font loaded = Font.loadFont(
+      getClass().getResourceAsStream("/myapp/resources/fonts/console.ttf"), 18);
 
-      if (customFont != null) {
-         System.out.println("Using custom font");
-         text.setFont(customFont);
-         // designText.setFont(customFont);
-         title.setFont(customFont);
-      } else {
-         text.setFont(Font.font("Consolas", FontPosture.REGULAR, 10));
-         designText.setFont(Font.font("Consolas", FontWeight.BOLD, FontPosture.REGULAR, 3));
-         title.setFont(Font.font("Consolas", FontPosture.REGULAR, 20));
-         status.setFont(Font.font("Consolas", FontPosture.REGULAR, 15));
-      }
+      String family = (loaded != null) ? loaded.getFamily() : "Consolas";
+      System.out.println("Using font: " + family);
+
+      title.setFont(Font.font(family, 20));
+      text.setFont(Font.font("Consolas", 14));
+      status.setFont(Font.font(family, 15));
+      designText.setFont(Font.font("Consolas", FontWeight.BOLD, 3));
 
       primaryStage = SetScene(primaryStage, text, title, designText, status);
       instance = this;
    }
-
+ 
    Stage SetScene(Stage primaryStage, TextArea text, Text title, Text designText, Text status) {
       primaryStage.initStyle(StageStyle.TRANSPARENT);
 
@@ -93,7 +88,7 @@ public class ConsoleWindow extends Application {
 
       Scene scene = new Scene(root, resX, resY);
       scene.setFill(Color.TRANSPARENT);
-      scene.getStylesheets().add(new java.io.File("src/myapp/output/resources/console.css").toURI().toString());
+      scene.getStylesheets().add(new java.io.File("src/myapp/resources/console.css").toURI().toString());
       // scene.getStylesheets().add(getClass().getResource("/fontstyle.css").toExternalForm());
       primaryStage.setScene(scene);
 
@@ -139,7 +134,8 @@ public class ConsoleWindow extends Application {
    }
 
    public TextArea InitializeText(double resX) {
-
+      
+      t.getStyleClass().add("console");
       // 1. Position and Margins
       double xPos = 20;
       double yPos = 50;
@@ -157,7 +153,7 @@ public class ConsoleWindow extends Application {
       t.setWrapText(true);
       t.setStyle(
             "-fx-text-fill: white;" +
-                  "-fx-line-spacing: 2px;" +
+                  "-fx-line-spacing: 5px;" +
                   "-fx-control-inner-background: black;" +
                   "-fx-padding: 0px 0px 0px 0px;");
 

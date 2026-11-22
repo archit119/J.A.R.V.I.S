@@ -43,7 +43,8 @@ public class CommandDispatcher {
     {
         boolean commandHandeled = false;
         String cleanInput = input.toLowerCase();
-        consoleWindow.SetText(cleanInput);
+        String output = "";
+        
         if(standby)
         {
             // DEBUG
@@ -74,7 +75,13 @@ public class CommandDispatcher {
             // volume control
             if(cleanInput.contains("volume"))
             {
-                VolumeControlHandle(input, volumeControl);
+                output = VolumeControlHandle(input, volumeControl);
+                commandHandeled = true;
+            }
+            else if (cleanInput.contains("set the one")) 
+            {
+                input = input.replaceFirst("one", "");
+                output = VolumeControlHandle(input, volumeControl);
                 commandHandeled = true;
             }
             // output control
@@ -92,7 +99,8 @@ public class CommandDispatcher {
                 {
                     // toggle feature maybe
                     outputControl.ToggleOutputDevice();
-                    consoleWindow.SetText("> Changing the output device");
+                    output = "> Changing the output device";
+
                 }
                 commandHandeled = true;
             }
@@ -102,11 +110,16 @@ public class CommandDispatcher {
                 standby = true;
                 SetJarvisStatus(Status.STANDBY);
                 System.out.println("Stading by");
-                consoleWindow.SetText("> Standing by");
+                output = "> Standing by";
                 commandHandeled = true;
             } 
 
             if(commandMode && commandHandeled) exitCommandMode();
+        }
+
+        if(commandHandeled) {
+            consoleWindow.SetText(cleanInput);
+            consoleWindow.SetText(output);
         }
   
     }
@@ -174,9 +187,10 @@ public class CommandDispatcher {
         StateHandler(currenStatus);
     }
 
-    void VolumeControlHandle(String rawInput, VolumeControl volumeControl)
+    String VolumeControlHandle(String rawInput, VolumeControl volumeControl)
     {
         int finalNumber = numberParser.NumberConverter(rawInput);
+        String output = "";
         System.out.println(finalNumber);
 
         // limit the final number
@@ -188,13 +202,17 @@ public class CommandDispatcher {
         if(finalNumber != -1) {
             volumeControl.SetVolume(finalNumber);
             volumeChange = true;
+            output = "> Set the volume to " + finalNumber;
         }
         else 
         {
             // dont do anything
             // here i would probably somehow ask it to speakback saying i didnt get the volume
             System.out.println("I didn't quite get that, what do you want the volume set too?");
+            output = "> I didn't quite get that, what do you want the volume set too?"; 
         }
+
+        return output;
     }
 
     String lastInput = "";
