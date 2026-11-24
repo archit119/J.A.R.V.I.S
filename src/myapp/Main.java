@@ -41,7 +41,7 @@ public class Main {
         skills.add(volumeSkill);
         skills.add(outputSkill);
 
-        CommandDispatcher commandDispatcher = new CommandDispatcher(console, skills, screenControl);
+        CommandDispatcher commandDispatcher = new CommandDispatcher(console, volumeControl, skills, screenControl);
 
         ClapListener clapListener = new ClapListener(commandDispatcher);
         clapListener.ListenForClaps();

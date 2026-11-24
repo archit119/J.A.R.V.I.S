@@ -21,8 +21,9 @@ public class CommandDispatcher {
 
     ArrayList<Skill> skills = new ArrayList<Skill>();
 
-    public CommandDispatcher (ConsoleWindow ConsoleWindow, ArrayList<Skill> skills, ScreenControl screenControl) {
+    public CommandDispatcher (ConsoleWindow ConsoleWindow, VolumeControl volumeControl, ArrayList<Skill> skills, ScreenControl screenControl) {
         consoleWindow = ConsoleWindow;
+        this.volumeControl = volumeControl;
         this.skills = skills;
         this.screenControl = screenControl;
     }
@@ -90,6 +91,8 @@ public class CommandDispatcher {
                     commandHandeled = true;
                 }
             }
+
+            volumeChange = output.contains("Set the volume to");
 
             if(cleanInput.contains("enough")) {
                 standby = true;

@@ -1,6 +1,14 @@
 ﻿[
 
 {
+"Name":"Headphones",
+"Type":"Device",
+"Direction":"Render",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Device\\Headphones\\Render"
+}
+,
+{
 "Name":"Speakers",
 "Type":"Device",
 "Direction":"Render",
@@ -9,43 +17,19 @@
 }
 ,
 {
-"Name":"Headphones",
-"Type":"Device",
-"Direction":"Render",
-"Device Name":"soundcore Q20i",
-"Command-Line Friendly ID":"soundcore Q20i\\Device\\Headphones\\Render"
-}
-,
-{
-"Name":"Spotify",
-"Type":"Application",
-"Direction":"Render",
-"Device Name":"soundcore Q20i",
-"Command-Line Friendly ID":"soundcore Q20i\\Application\\Spotify"
-}
-,
-{
-"Name":"Google Chrome",
-"Type":"Application",
-"Direction":"Render",
-"Device Name":"soundcore Q20i",
-"Command-Line Friendly ID":"soundcore Q20i\\Application\\Google Chrome"
-}
-,
-{
 "Name":"OpenJDK Platform 25.0.4.1",
 "Type":"Application",
 "Direction":"Render",
-"Device Name":"soundcore Q20i",
-"Command-Line Friendly ID":"soundcore Q20i\\Application\\OpenJDK Platform 25.0.4.1"
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\OpenJDK Platform 25.0.4.1"
 }
 ,
 {
-"Name":"System Sounds",
+"Name":"Steam Client WebHelper",
 "Type":"Application",
 "Direction":"Render",
-"Device Name":"soundcore Q20i",
-"Command-Line Friendly ID":"soundcore Q20i\\Application\\System Sounds"
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Steam Client WebHelper"
 }
 ,
 {
@@ -57,11 +41,11 @@
 }
 ,
 {
-"Name":"Volume",
-"Type":"Subunit",
+"Name":"Steam",
+"Type":"Application",
 "Direction":"Render",
-"Device Name":"soundcore Q20i",
-"Command-Line Friendly ID":"soundcore Q20i\\Subunit\\Volume"
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Steam"
 }
 ,
 {
@@ -73,6 +57,14 @@
 }
 ,
 {
+"Name":"System Sounds",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\System Sounds"
+}
+,
+{
 "Name":"OpenJDK Platform 25.0.4.1",
 "Type":"Application",
 "Direction":"Render",
@@ -81,11 +73,43 @@
 }
 ,
 {
+"Name":"Google Chrome",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Google Chrome"
+}
+,
+{
 "Name":"System Sounds",
 "Type":"Application",
 "Direction":"Render",
-"Device Name":"Philips TAT2236 Hands-Free",
-"Command-Line Friendly ID":"Philips TAT2236 Hands-Free\\Application\\System Sounds"
+"Device Name":"NVIDIA High Definition Audio",
+"Command-Line Friendly ID":"NVIDIA High Definition Audio\\Application\\System Sounds"
+}
+,
+{
+"Name":"Steam",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"NVIDIA High Definition Audio",
+"Command-Line Friendly ID":"NVIDIA High Definition Audio\\Application\\Steam"
+}
+,
+{
+"Name":"Spotify",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"NVIDIA High Definition Audio",
+"Command-Line Friendly ID":"NVIDIA High Definition Audio\\Application\\Spotify"
+}
+,
+{
+"Name":"Google Chrome",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"NVIDIA High Definition Audio",
+"Command-Line Friendly ID":"NVIDIA High Definition Audio\\Application\\Google Chrome"
 }
 ,
 {
@@ -97,27 +121,19 @@
 }
 ,
 {
-"Name":"System Sounds",
-"Type":"Application",
-"Direction":"Render",
-"Device Name":"Philips TAT2236",
-"Command-Line Friendly ID":"Philips TAT2236\\Application\\System Sounds"
-}
-,
-{
-"Name":"System Sounds",
+"Name":"Steam",
 "Type":"Application",
 "Direction":"Render",
 "Device Name":"Realtek(R) Audio",
-"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\System Sounds"
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Steam"
 }
 ,
 {
-"Name":"Capture",
-"Type":"Subunit",
-"Direction":"Capture",
-"Device Name":"soundcore Q20i",
-"Command-Line Friendly ID":"soundcore Q20i\\Subunit\\Capture"
+"Name":"Spotify",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Spotify"
 }
 ,
 {
@@ -129,11 +145,35 @@
 }
 ,
 {
-"Name":"Headset",
+"Name":"Microphone Boost",
+"Type":"Subunit",
+"Direction":"Capture",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Subunit\\Microphone Boost"
+}
+,
+{
+"Name":"Microphone",
+"Type":"Subunit",
+"Direction":"Capture",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Subunit\\Microphone"
+}
+,
+{
+"Name":"Capture",
+"Type":"Subunit",
+"Direction":"Capture",
+"Device Name":"USBAudio1.0",
+"Command-Line Friendly ID":"USBAudio1.0\\Subunit\\Capture"
+}
+,
+{
+"Name":"Microphone Headphones",
 "Type":"Device",
 "Direction":"Capture",
-"Device Name":"soundcore Q20i",
-"Command-Line Friendly ID":"soundcore Q20i\\Device\\Headset\\Capture"
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Device\\Microphone Headphones\\Capture"
 }
 ,
 {
@@ -145,11 +185,59 @@
 }
 ,
 {
+"Name":"Microphone",
+"Type":"Device",
+"Direction":"Capture",
+"Device Name":"USBAudio1.0",
+"Command-Line Friendly ID":"USBAudio1.0\\Device\\Microphone\\Capture"
+}
+,
+{
+"Name":"Python",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"USBAudio1.0",
+"Command-Line Friendly ID":"USBAudio1.0\\Application\\Python"
+}
+,
+{
+"Name":"Microsoft® Windows® Operating System",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"USBAudio1.0",
+"Command-Line Friendly ID":"USBAudio1.0\\Application\\Microsoft® Windows® Operating System"
+}
+,
+{
 "Name":"System Sounds",
 "Type":"Application",
 "Direction":"Capture",
-"Device Name":"Philips TAT2236 Hands-Free",
-"Command-Line Friendly ID":"Philips TAT2236 Hands-Free\\Application\\System Sounds"
+"Device Name":"USBAudio1.0",
+"Command-Line Friendly ID":"USBAudio1.0\\Application\\System Sounds"
+}
+,
+{
+"Name":"Steam",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"USBAudio1.0",
+"Command-Line Friendly ID":"USBAudio1.0\\Application\\Steam"
+}
+,
+{
+"Name":"Google Chrome",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"USBAudio1.0",
+"Command-Line Friendly ID":"USBAudio1.0\\Application\\Google Chrome"
+}
+,
+{
+"Name":"OpenJDK Platform 25.0.4.1",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"USBAudio1.0",
+"Command-Line Friendly ID":"USBAudio1.0\\Application\\OpenJDK Platform 25.0.4.1"
 }
 ,
 {
@@ -161,11 +249,11 @@
 }
 ,
 {
-"Name":"Microsoft® Windows® Operating System",
+"Name":"Google Chrome",
 "Type":"Application",
 "Direction":"Capture",
 "Device Name":"Realtek(R) Audio",
-"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Microsoft® Windows® Operating System"
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Google Chrome"
 }
 ,
 {
@@ -177,14 +265,6 @@
 }
 ,
 {
-"Name":"Python",
-"Type":"Application",
-"Direction":"Capture",
-"Device Name":"Realtek(R) Audio",
-"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Python"
-}
-,
-{
 "Name":"System Sounds",
 "Type":"Application",
 "Direction":"Capture",
@@ -196,24 +276,16 @@
 "Name":"System Sounds",
 "Type":"Application",
 "Direction":"Capture",
-"Device Name":"soundcore Q20i",
-"Command-Line Friendly ID":"soundcore Q20i\\Application\\System Sounds"
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\System Sounds"
 }
 ,
 {
 "Name":"OpenJDK Platform 25.0.4.1",
 "Type":"Application",
 "Direction":"Capture",
-"Device Name":"soundcore Q20i",
-"Command-Line Friendly ID":"soundcore Q20i\\Application\\OpenJDK Platform 25.0.4.1"
-}
-,
-{
-"Name":"System Sounds",
-"Type":"Application",
-"Direction":"Capture",
 "Device Name":"Realtek(R) Audio",
-"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\System Sounds"
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\OpenJDK Platform 25.0.4.1"
 }
 
 ]
