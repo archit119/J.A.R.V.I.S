@@ -21,9 +21,9 @@ WORKING ON THIS SECTION
 
 ## Setup
 1. Clone the repo
-2. Download the Vosk model [(link)]https://alphacephei.com/vosk/models → put it in `tools/`
-3. Download NirCmd and SoundVolumeView [(link)]https://www.nirsoft.net/  → `tools/`
-4. Download the JavaFX SDK [(link)](https://openjfx.io/) → `tools/`
+2. Download the Vosk model [(Vosk)] https://alphacephei.com/vosk/models → put it in `tools/`
+3. Download NirCmd and SoundVolumeView [(Nirsoft)] https://www.nirsoft.net/  → `tools/`
+4. Download the JavaFX SDK [(JavaFX)](https://openjfx.io/) → `tools/`
 5. Python: create the venv, `pip install -r python/requirements.txt`
 6. VS Code settings (`.vscode/settings.json`, vmArgs for JavaFX)
 
