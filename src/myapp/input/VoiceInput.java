@@ -29,49 +29,34 @@ public class VoiceInput {
     int sampleSizeInBits = 16;
     int channels = 1;
 
-    public String GetInput(Model model, Recognizer recognizer) {
-        AudioFormat format = new AudioFormat(sampleRate, sampleSizeInBits, channels, true, false);
-        DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
+    public String GetInput(Model model, Recognizer recognizer, TargetDataLine microphone) {
+        System.out.println("Listening...");
+        byte[] buffer = new byte[bufferSize];
+        while (true) {
+            int n = microphone.read(buffer, 0, buffer.length);
+            commandDispatcher.tick();
+            if (n > 0) {
+                if (recognizer.acceptWaveForm(buffer, n)) {
 
-        try (TargetDataLine microphone = (TargetDataLine) AudioSystem.getLine(info)) {
+                    JsonObject json = JsonParser.parseString(recognizer.getResult()).getAsJsonObject();
+                    String text = json.get("text").getAsString().replace("[unk]", "").trim();
 
-            microphone.open(format);
-            microphone.start();
-            System.out.println("Listening...");
+                    System.out.println(text);
 
-            byte[] buffer = new byte[bufferSize];
-            while (true) {
+                    if (!text.isEmpty()) {
+                        return text;
+                    }
+                } else {
+                    // here listen for jarvis?
+                    JsonObject json = JsonParser.parseString(recognizer.getPartialResult()).getAsJsonObject();
+                    String text = json.get("partial").getAsString().replace("[unk]", "").trim();
 
-                int n = microphone.read(buffer, 0, buffer.length);
-                commandDispatcher.tick();
-                if (n > 0) {
-                    if (recognizer.acceptWaveForm(buffer, n)) {
-
-                        JsonObject json = JsonParser.parseString(recognizer.getResult()).getAsJsonObject();
-                        String text = json.get("text").getAsString().replace("[unk]", "").trim();
-
-                        System.out.println(text);
-
-                        if (!text.isEmpty()) {
-                            return text;
-                        }
-                    } else {
-                        // here listen for jarvis?
-                        JsonObject json = JsonParser.parseString(recognizer.getPartialResult()).getAsJsonObject();
-                        String text = json.get("partial").getAsString().replace("[unk]", "").trim();
-
-                        if (!text.isEmpty()) {
-                            commandDispatcher.PartialHeard(text);
-                        }
+                    if (!text.isEmpty()) {
+                        commandDispatcher.PartialHeard(text);
                     }
                 }
-
             }
-        }
 
-        catch (LineUnavailableException e) {
-            System.err.println("Voice input failed: " + e.getMessage());
-            return "";
         }
     }
 

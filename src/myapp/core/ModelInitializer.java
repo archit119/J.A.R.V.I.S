@@ -2,6 +2,12 @@ package myapp.core;
 
 import java.io.IOException;
 
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.TargetDataLine;
+
 import org.vosk.Model;
 import org.vosk.Recognizer;
 
@@ -14,13 +20,17 @@ import myapp.input.TextInput;
 
 public class ModelInitializer {
 
-    boolean useVoice = true; // just for debugging purposes
+    boolean useVoice = false; // just for debugging purposes
 
     public void InitalizeModel(CommandDispatcher commandDispatcher, VolumeControl volumeControl, OutputControl outputControl)
     {
         VoiceInput voiceInput = new VoiceInput(commandDispatcher);
         TextInput textInput = new TextInput();
-    
+
+        float sampleRate = voiceInput.GetSampleRate();
+        int sampleSizeInBits = voiceInput.GetSampleSizeInBits();
+        int channels = voiceInput.GetNoOfChannels();
+        
         String[] keywords = {
             // wake word
             "jarvis",
@@ -42,19 +52,28 @@ public class ModelInitializer {
             "output", "device", "audio", "speakers", "speaker", "headphones", "headset",
 
             // stopping
-            "stop", "enough", "shut", "goodbye", "exit", "that's", "all",
+            "stop", "enough", "shut", "goodbye", "exit", "thats", "all",
 
             // phrases
             "change the output device", "switch to headphones", "switch to speakers", "set the volume to fifty", "wake up daddys home",
+
+            // some debug statments
+            "terminate",
 
             // unknown words / noise
             "[unk]"
         };
         String grammar = new Gson().toJson(keywords);   
 
+        AudioFormat format = new AudioFormat(sampleRate, sampleSizeInBits, channels, true, false);
+        DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
+
         try (Model model = new Model("tools/vosk-model-en-us-0.22-lgraph");
-            Recognizer recognizer = new Recognizer(model, 16000f, grammar))
+            Recognizer recognizer = new Recognizer(model, 16000f, grammar);
+            TargetDataLine microphone = (TargetDataLine) AudioSystem.getLine(info);)
         {
+            microphone.open(format, 64000);
+            microphone.start();
             // String input = textInput.GetInput();
             while(true)
             {
@@ -62,7 +81,7 @@ public class ModelInitializer {
 
                 if(useVoice)
                 {
-                    voice = voiceInput.GetInput(model, recognizer);
+                    voice = voiceInput.GetInput(model, recognizer, microphone);
                 }
                 else
                 {
@@ -72,7 +91,7 @@ public class ModelInitializer {
                 commandDispatcher.HandleInput(voice);
             }
         }
-        catch (IOException e)
+        catch (IOException | LineUnavailableException e)
         {
             System.err.println("Voice input failed: " + e.getMessage());
         }

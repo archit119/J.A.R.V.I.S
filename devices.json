@@ -1,0 +1,203 @@
+﻿[
+
+{
+"Name":"Speakers",
+"Type":"Device",
+"Direction":"Render",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Device\\Speakers\\Render"
+}
+,
+{
+"Name":"Headphones",
+"Type":"Device",
+"Direction":"Render",
+"Device Name":"soundcore Q20i",
+"Command-Line Friendly ID":"soundcore Q20i\\Device\\Headphones\\Render"
+}
+,
+{
+"Name":"Google Chrome",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"soundcore Q20i",
+"Command-Line Friendly ID":"soundcore Q20i\\Application\\Google Chrome"
+}
+,
+{
+"Name":"OpenJDK Platform 25.0.4.1",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"soundcore Q20i",
+"Command-Line Friendly ID":"soundcore Q20i\\Application\\OpenJDK Platform 25.0.4.1"
+}
+,
+{
+"Name":"System Sounds",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"soundcore Q20i",
+"Command-Line Friendly ID":"soundcore Q20i\\Application\\System Sounds"
+}
+,
+{
+"Name":"OpenJDK Platform 25.0.4.1",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\OpenJDK Platform 25.0.4.1"
+}
+,
+{
+"Name":"Google Chrome",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Google Chrome"
+}
+,
+{
+"Name":"Volume",
+"Type":"Subunit",
+"Direction":"Render",
+"Device Name":"soundcore Q20i",
+"Command-Line Friendly ID":"soundcore Q20i\\Subunit\\Volume"
+}
+,
+{
+"Name":"System Sounds",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\System Sounds"
+}
+,
+{
+"Name":"System Sounds",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"Philips TAT2236",
+"Command-Line Friendly ID":"Philips TAT2236\\Application\\System Sounds"
+}
+,
+{
+"Name":"System Sounds",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"Philips TAT2236 Hands-Free",
+"Command-Line Friendly ID":"Philips TAT2236 Hands-Free\\Application\\System Sounds"
+}
+,
+{
+"Name":"System Sounds",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\System Sounds"
+}
+,
+{
+"Name":"Capture",
+"Type":"Subunit",
+"Direction":"Capture",
+"Device Name":"soundcore Q20i",
+"Command-Line Friendly ID":"soundcore Q20i\\Subunit\\Capture"
+}
+,
+{
+"Name":"Microphone",
+"Type":"Subunit",
+"Direction":"Capture",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Subunit\\Microphone"
+}
+,
+{
+"Name":"Headset",
+"Type":"Device",
+"Direction":"Capture",
+"Device Name":"soundcore Q20i",
+"Command-Line Friendly ID":"soundcore Q20i\\Device\\Headset\\Capture"
+}
+,
+{
+"Name":"Microphone Array",
+"Type":"Device",
+"Direction":"Capture",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Device\\Microphone Array\\Capture"
+}
+,
+{
+"Name":"System Sounds",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"Philips TAT2236 Hands-Free",
+"Command-Line Friendly ID":"Philips TAT2236 Hands-Free\\Application\\System Sounds"
+}
+,
+{
+"Name":"System Sounds",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\System Sounds"
+}
+,
+{
+"Name":"Microsoft® Windows® Operating System",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Microsoft® Windows® Operating System"
+}
+,
+{
+"Name":"OpenJDK Platform 25.0.4.1",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\OpenJDK Platform 25.0.4.1"
+}
+,
+{
+"Name":"Python",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Python"
+}
+,
+{
+"Name":"System Sounds",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\System Sounds"
+}
+,
+{
+"Name":"System Sounds",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"soundcore Q20i",
+"Command-Line Friendly ID":"soundcore Q20i\\Application\\System Sounds"
+}
+,
+{
+"Name":"OpenJDK Platform 25.0.4.1",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"soundcore Q20i",
+"Command-Line Friendly ID":"soundcore Q20i\\Application\\OpenJDK Platform 25.0.4.1"
+}
+,
+{
+"Name":"System Sounds",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\System Sounds"
+}
+
+]

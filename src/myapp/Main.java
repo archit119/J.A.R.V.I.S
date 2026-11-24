@@ -7,6 +7,7 @@ import myapp.core.ModelInitializer;
 import myapp.core.Status;
 import myapp.output.ConsoleWindow;
 import myapp.skills.OutputControl;
+import myapp.skills.ScreenControl;
 import myapp.skills.VolumeControl;
 
 public class Main {
@@ -25,8 +26,9 @@ public class Main {
 
         OutputControl outputControl = new OutputControl();
         VolumeControl volumeControl = new VolumeControl();
+        ScreenControl screenControl = new ScreenControl();
 
-        CommandDispatcher commandDispatcher = new CommandDispatcher(console, volumeControl, outputControl);
+        CommandDispatcher commandDispatcher = new CommandDispatcher(console, volumeControl, outputControl, screenControl);
 
         ClapListener clapListener = new ClapListener(commandDispatcher);
         clapListener.ListenForClaps();

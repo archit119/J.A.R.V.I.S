@@ -6,8 +6,9 @@ import java.io.Console;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import javafx.stage.Screen;
 import myapp.skills.OutputControl;
-
+import myapp.skills.ScreenControl;
 import myapp.output.ConsoleWindow;
 
 public class CommandDispatcher {
@@ -15,11 +16,13 @@ public class CommandDispatcher {
     ConsoleWindow consoleWindow = null;
     VolumeControl volumeControl;
     OutputControl outputControl;
+    ScreenControl screenControl;
 
-    public CommandDispatcher (ConsoleWindow ConsoleWindow, VolumeControl volumeControl, OutputControl outputControl) {
+    public CommandDispatcher (ConsoleWindow ConsoleWindow, VolumeControl volumeControl, OutputControl outputControl, ScreenControl screenControl) {
         consoleWindow = ConsoleWindow;
         this.volumeControl = volumeControl;
         this.outputControl = outputControl; 
+        this.screenControl = screenControl;
     }
 
     NumberParser numberParser = new NumberParser();
@@ -44,11 +47,17 @@ public class CommandDispatcher {
         boolean commandHandeled = false;
         String cleanInput = input.toLowerCase();
         String output = "";
+
+        boolean armed = System.nanoTime()-start < TimeUnit.SECONDS.toNanos(timeToWait);
+
+        if(cleanInput.contains(wakeword) && armed && clapHeard && !standby)
+        {
+            screenControl.ScreenOn();
+        } 
         
         if(standby)
         {
             // DEBUG
-            boolean armed = System.nanoTime()-start < TimeUnit.SECONDS.toNanos(timeToWait);
             System.out.println("Clap heard: " + clapHeard);
             System.out.println("Armed status: " + armed);
 
@@ -59,8 +68,10 @@ public class CommandDispatcher {
                 consoleWindow.SetText("> Waking up");
                 standby = false;
                 clapHeard = false;
+                screenControl.ScreenOn();
                 SetJarvisStatus(Status.LISTENING);
-            }
+                commandHandeled = true;
+            } 
             // else if(cleanInput.contains("wake up")) {
             //     System.out.println("Waking up");
             //     consoleWindow.SetText("> Waking up");
@@ -68,7 +79,6 @@ public class CommandDispatcher {
             //     clapHeard = false;
             //     SetJarvisStatus(Status.LISTENING);
             // }
-            commandHandeled = true;
         }
         else
         {
@@ -112,9 +122,13 @@ public class CommandDispatcher {
                 System.out.println("Stading by");
                 output = "> Standing by";
                 commandHandeled = true;
-            } 
+            }
 
             if(commandMode && commandHandeled) exitCommandMode();
+        }
+
+        if(cleanInput.equals("terminate jarvis")) {
+            System.exit(0); 
         }
 
         if(commandHandeled) {
