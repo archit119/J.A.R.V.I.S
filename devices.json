@@ -17,11 +17,11 @@
 }
 ,
 {
-"Name":"OpenJDK Platform 25.0.4.1",
+"Name":"Spotify",
 "Type":"Application",
 "Direction":"Render",
 "Device Name":"soundcore Q20i",
-"Command-Line Friendly ID":"soundcore Q20i\\Application\\OpenJDK Platform 25.0.4.1"
+"Command-Line Friendly ID":"soundcore Q20i\\Application\\Spotify"
 }
 ,
 {
@@ -33,6 +33,14 @@
 }
 ,
 {
+"Name":"OpenJDK Platform 25.0.4.1",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"soundcore Q20i",
+"Command-Line Friendly ID":"soundcore Q20i\\Application\\OpenJDK Platform 25.0.4.1"
+}
+,
+{
 "Name":"System Sounds",
 "Type":"Application",
 "Direction":"Render",
@@ -41,11 +49,19 @@
 }
 ,
 {
-"Name":"OpenJDK Platform 25.0.4.1",
+"Name":"Spotify",
 "Type":"Application",
 "Direction":"Render",
 "Device Name":"Realtek(R) Audio",
-"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\OpenJDK Platform 25.0.4.1"
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Spotify"
+}
+,
+{
+"Name":"Volume",
+"Type":"Subunit",
+"Direction":"Render",
+"Device Name":"soundcore Q20i",
+"Command-Line Friendly ID":"soundcore Q20i\\Subunit\\Volume"
 }
 ,
 {
@@ -57,11 +73,19 @@
 }
 ,
 {
-"Name":"Volume",
-"Type":"Subunit",
+"Name":"OpenJDK Platform 25.0.4.1",
+"Type":"Application",
 "Direction":"Render",
-"Device Name":"soundcore Q20i",
-"Command-Line Friendly ID":"soundcore Q20i\\Subunit\\Volume"
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\OpenJDK Platform 25.0.4.1"
+}
+,
+{
+"Name":"System Sounds",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"Philips TAT2236 Hands-Free",
+"Command-Line Friendly ID":"Philips TAT2236 Hands-Free\\Application\\System Sounds"
 }
 ,
 {
@@ -78,14 +102,6 @@
 "Direction":"Render",
 "Device Name":"Philips TAT2236",
 "Command-Line Friendly ID":"Philips TAT2236\\Application\\System Sounds"
-}
-,
-{
-"Name":"System Sounds",
-"Type":"Application",
-"Direction":"Render",
-"Device Name":"Philips TAT2236 Hands-Free",
-"Command-Line Friendly ID":"Philips TAT2236 Hands-Free\\Application\\System Sounds"
 }
 ,
 {
@@ -153,19 +169,19 @@
 }
 ,
 {
-"Name":"Python",
-"Type":"Application",
-"Direction":"Capture",
-"Device Name":"Realtek(R) Audio",
-"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Python"
-}
-,
-{
 "Name":"OpenJDK Platform 25.0.4.1",
 "Type":"Application",
 "Direction":"Capture",
 "Device Name":"Realtek(R) Audio",
 "Command-Line Friendly ID":"Realtek(R) Audio\\Application\\OpenJDK Platform 25.0.4.1"
+}
+,
+{
+"Name":"Python",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Python"
 }
 ,
 {

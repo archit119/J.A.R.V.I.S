@@ -1,4 +1,4 @@
-package myapp.skills;
+package myapp.system;
 
 import java.util.ArrayList;
 import java.util.List;

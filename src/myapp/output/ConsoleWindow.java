@@ -16,10 +16,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import myapp.core.Status;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import myapp.core.Status;
 
 public class ConsoleWindow extends Application {
 

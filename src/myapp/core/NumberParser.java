@@ -41,7 +41,7 @@ public class NumberParser {
         NUMBER_MAP.put("hundred", 100);
     }
 
-    Integer NumberConverter(String input)
+    public Integer NumberConverter(String input)
     {
         String cleanInput = input.toLowerCase().trim();
         String[] words = cleanInput.split("[\\s-]+");

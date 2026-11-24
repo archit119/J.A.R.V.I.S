@@ -1,14 +1,19 @@
 package myapp;
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import myapp.core.ClapListener;
 import myapp.core.CommandDispatcher;
 import myapp.core.ModelInitializer;
-import myapp.core.Status;
 import myapp.output.ConsoleWindow;
-import myapp.skills.OutputControl;
-import myapp.skills.ScreenControl;
-import myapp.skills.VolumeControl;
+import myapp.skills.OutputSkill;
+import myapp.skills.Skill;
+import myapp.skills.VolumeSkill;
+import myapp.core.Status;
+import myapp.system.OutputControl;
+import myapp.system.ScreenControl;
+import myapp.system.VolumeControl;
 
 public class Main {
     
@@ -28,12 +33,20 @@ public class Main {
         VolumeControl volumeControl = new VolumeControl();
         ScreenControl screenControl = new ScreenControl();
 
-        CommandDispatcher commandDispatcher = new CommandDispatcher(console, volumeControl, outputControl, screenControl);
+        // all skills here
+        VolumeSkill volumeSkill = new VolumeSkill(volumeControl);
+        OutputSkill outputSkill = new OutputSkill(outputControl);
+        // the idea is to loop through all the skills in the list and call canHandle, and if that returns true call handle
+        ArrayList<Skill> skills = new ArrayList<Skill>();
+        skills.add(volumeSkill);
+        skills.add(outputSkill);
+
+        CommandDispatcher commandDispatcher = new CommandDispatcher(console, skills, screenControl);
 
         ClapListener clapListener = new ClapListener(commandDispatcher);
         clapListener.ListenForClaps();
         
         ModelInitializer modelInitializer = new ModelInitializer();
-        modelInitializer.InitalizeModel(commandDispatcher, volumeControl, outputControl);
+        modelInitializer.InitalizeModel(commandDispatcher);
     }
 } 

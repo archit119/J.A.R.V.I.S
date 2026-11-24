@@ -14,15 +14,13 @@ import org.vosk.Recognizer;
 import com.google.gson.Gson;
 
 import myapp.input.VoiceInput;
-import myapp.skills.OutputControl;
-import myapp.skills.VolumeControl;
 import myapp.input.TextInput;
 
 public class ModelInitializer {
 
     boolean useVoice = false; // just for debugging purposes
 
-    public void InitalizeModel(CommandDispatcher commandDispatcher, VolumeControl volumeControl, OutputControl outputControl)
+    public void InitalizeModel(CommandDispatcher commandDispatcher)
     {
         VoiceInput voiceInput = new VoiceInput(commandDispatcher);
         TextInput textInput = new TextInput();

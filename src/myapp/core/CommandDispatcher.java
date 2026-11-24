@@ -1,15 +1,16 @@
 package myapp.core;
 
-import myapp.skills.VolumeControl;
-
 import java.io.Console;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import java.util.*;
 
 import javafx.stage.Screen;
-import myapp.skills.OutputControl;
-import myapp.skills.ScreenControl;
 import myapp.output.ConsoleWindow;
+import myapp.system.OutputControl;
+import myapp.system.ScreenControl;
+import myapp.system.VolumeControl;
+import myapp.skills.*;
 
 public class CommandDispatcher {
 
@@ -18,10 +19,11 @@ public class CommandDispatcher {
     OutputControl outputControl;
     ScreenControl screenControl;
 
-    public CommandDispatcher (ConsoleWindow ConsoleWindow, VolumeControl volumeControl, OutputControl outputControl, ScreenControl screenControl) {
+    ArrayList<Skill> skills = new ArrayList<Skill>();
+
+    public CommandDispatcher (ConsoleWindow ConsoleWindow, ArrayList<Skill> skills, ScreenControl screenControl) {
         consoleWindow = ConsoleWindow;
-        this.volumeControl = volumeControl;
-        this.outputControl = outputControl; 
+        this.skills = skills;
         this.screenControl = screenControl;
     }
 
@@ -82,41 +84,14 @@ public class CommandDispatcher {
         }
         else
         {
-            // volume control
-            if(cleanInput.contains("volume"))
-            {
-                output = VolumeControlHandle(input, volumeControl);
-                commandHandeled = true;
-            }
-            else if (cleanInput.contains("set the one")) 
-            {
-                input = input.replaceFirst("one", "");
-                output = VolumeControlHandle(input, volumeControl);
-                commandHandeled = true;
-            }
-            // output control
-            else if(cleanInput.contains("change"))
-            {
-                if(cleanInput.contains("speakers"))
-                {
-                    outputControl.ChangeOutput("Speakers");
+            for (Skill skill : skills) {
+                if(skill.canHandle(cleanInput)) {
+                    output = skill.handleInput(cleanInput);
+                    commandHandeled = true;
                 }
-                else if(cleanInput.contains("headphones"))
-                {
-                    outputControl.ChangeOutput("Headphones");
-                }
-                else
-                {
-                    // toggle feature maybe
-                    outputControl.ToggleOutputDevice();
-                    output = "> Changing the output device";
+            }
 
-                }
-                commandHandeled = true;
-            }
-            else if(cleanInput.contains("enough"))
-            {
-                // tell the script to stop somehow?
+            if(cleanInput.contains("enough")) {
                 standby = true;
                 SetJarvisStatus(Status.STANDBY);
                 System.out.println("Stading by");
@@ -199,34 +174,6 @@ public class CommandDispatcher {
     public void SetJarvisStatus(Status targetStatus) {
         currenStatus = targetStatus;
         StateHandler(currenStatus);
-    }
-
-    String VolumeControlHandle(String rawInput, VolumeControl volumeControl)
-    {
-        int finalNumber = numberParser.NumberConverter(rawInput);
-        String output = "";
-        System.out.println(finalNumber);
-
-        // limit the final number
-        if(finalNumber > 100)
-        {
-            finalNumber = 100;
-        }
-
-        if(finalNumber != -1) {
-            volumeControl.SetVolume(finalNumber);
-            volumeChange = true;
-            output = "> Set the volume to " + finalNumber;
-        }
-        else 
-        {
-            // dont do anything
-            // here i would probably somehow ask it to speakback saying i didnt get the volume
-            System.out.println("I didn't quite get that, what do you want the volume set too?");
-            output = "> I didn't quite get that, what do you want the volume set too?"; 
-        }
-
-        return output;
     }
 
     String lastInput = "";

@@ -1,4 +1,4 @@
-package myapp.skills;
+package myapp.system;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
