@@ -17,19 +17,19 @@
 }
 ,
 {
-"Name":"Google Chrome",
-"Type":"Application",
-"Direction":"Render",
-"Device Name":"soundcore Q20i",
-"Command-Line Friendly ID":"soundcore Q20i\\Application\\Google Chrome"
-}
-,
-{
 "Name":"OpenJDK Platform 25.0.4.1",
 "Type":"Application",
 "Direction":"Render",
 "Device Name":"soundcore Q20i",
 "Command-Line Friendly ID":"soundcore Q20i\\Application\\OpenJDK Platform 25.0.4.1"
+}
+,
+{
+"Name":"Google Chrome",
+"Type":"Application",
+"Direction":"Render",
+"Device Name":"soundcore Q20i",
+"Command-Line Friendly ID":"soundcore Q20i\\Application\\Google Chrome"
 }
 ,
 {
@@ -153,19 +153,19 @@
 }
 ,
 {
-"Name":"OpenJDK Platform 25.0.4.1",
-"Type":"Application",
-"Direction":"Capture",
-"Device Name":"Realtek(R) Audio",
-"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\OpenJDK Platform 25.0.4.1"
-}
-,
-{
 "Name":"Python",
 "Type":"Application",
 "Direction":"Capture",
 "Device Name":"Realtek(R) Audio",
 "Command-Line Friendly ID":"Realtek(R) Audio\\Application\\Python"
+}
+,
+{
+"Name":"OpenJDK Platform 25.0.4.1",
+"Type":"Application",
+"Direction":"Capture",
+"Device Name":"Realtek(R) Audio",
+"Command-Line Friendly ID":"Realtek(R) Audio\\Application\\OpenJDK Platform 25.0.4.1"
 }
 ,
 {

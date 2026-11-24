@@ -31,6 +31,8 @@ public class OutputControl {
         processRunner.BuildProcess(commands);
     }
 
+    // TODO: only supports toggling between 2 output devices.
+    // With 3+ devices, this picks the first two. Could become "switch to <name>" or cycling.
     public void ToggleOutputDevice()
     {
         GetOutputDevices();
